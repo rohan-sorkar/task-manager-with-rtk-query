@@ -1,7 +1,11 @@
 import apiSlice from "../api/apiSlice";
 
 const teamsApi = apiSlice.injectEndpoints({
-    endpoints: (builder) => ({})
+    endpoints: (builder) => ({
+        getTeams: builder.query({
+            query: () => '/teams'
+        })
+    })
 });
 
-export const {} = teamsApi;
+export const {useGetTeamsQuery} = teamsApi;

@@ -1,45 +1,36 @@
 import React from "react";
+import {useGetTeamsQuery} from '../../features/teams/teamsApi'
 
 const TeamMembers = () => {
+  const {data: teams, isLoading, isError} = useGetTeamsQuery();
+  //decide what to render
+  let content = null;
+  if (isLoading) {
+    content = <h1>Loading...</h1>;
+  }
+  if (!isLoading && isError) {
+    content = <h1>something went wrong!</h1>;
+  }
+  if (!isLoading && !isError && teams?.length === 0) {
+    content = <h1>There is no teams member!</h1>;
+  }
+  if (!isLoading && !isError && teams?.length > 0) {
+    content = (
+      <div className="mt-3 space-y-4">
+        {teams.map((team) => (
+          <div key={team.id} className="checkbox-container">
+            <img src={team.avatar} className="team-avater" />
+            <p className="label">{team.name}</p>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="mt-8">
       <h3 className="text-xl font-bold">Team Members</h3>
-      <div className="mt-3 space-y-4">
-        <div className="checkbox-container">
-          <img src="./images/avatars/sumit.png" className="team-avater" />
-          <p className="label">Sumit Saha</p>
-        </div>
-
-        <div className="checkbox-container">
-          <img src="./images/avatars/sadh.png" className="team-avater" />
-          <p className="label">Sadh Hasan</p>
-        </div>
-
-        <div className="checkbox-container">
-          <img src="./images/avatars/akash.png" className="team-avater" />
-          <p className="label">Akash Ahmed</p>
-        </div>
-
-        <div className="checkbox-container">
-          <img src="./images/avatars/salahuddin.png" className="team-avater" />
-          <p className="label">Md Salahuddin</p>
-        </div>
-
-        <div className="checkbox-container">
-          <img src="./images/avatars/riyadh.png" className="team-avater" />
-          <p className="label">Riyadh Hassan</p>
-        </div>
-
-        <div className="checkbox-container">
-          <img src="./images/avatars/ferdous.png" className="team-avater" />
-          <p className="label">Ferdous Hassan</p>
-        </div>
-
-        <div className="checkbox-container">
-          <img src="./images/avatars/almas.png" className="team-avater" />
-          <p className="label">Arif Almas</p>
-        </div>
-      </div>
+      {content}
     </div>
   );
 };

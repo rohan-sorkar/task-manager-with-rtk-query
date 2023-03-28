@@ -1,7 +1,11 @@
 import apiSlice from "../api/apiSlice";
 
 const projectsApi = apiSlice.injectEndpoints({
-    endpoints: (builder) => ({})
+    endpoints: (builder) => ({
+        getProjects: builder.query({
+            query: () => '/projects'
+        })
+    })
 });
 
-export const {} = projectsApi;
+export const {useGetProjectsQuery} = projectsApi;
