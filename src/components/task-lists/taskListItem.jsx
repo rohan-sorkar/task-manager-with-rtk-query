@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useChangeTaskStatusMutation } from "../../features/tasks/tasksApi";
 
 const TaskListItem = ({ task }) => {
+  const [changeTask, {}] = useChangeTaskStatusMutation();
   const {
     id,
     taskName,
@@ -12,6 +14,19 @@ const TaskListItem = ({ task }) => {
   } = task;
   
   const [taskStatus, setTaskStatus] = useState(status);
+  const [shouldChange, setShouldChange] = useState(false)
+
+  const handleChange = (value) => {
+    setTaskStatus(value)
+    setShouldChange(true)
+  }
+  
+  useEffect(() => {
+    if(shouldChange) {
+      changeTask({id, data: {...task, status: taskStatus}})
+      setShouldChange(false)
+    }
+  }, [shouldChange])
 
   return (
     <div className="lws-task">
@@ -62,7 +77,7 @@ const TaskListItem = ({ task }) => {
             />
           </svg>
         </Link>
-        <select value={taskStatus} onChange={(e) => setTaskStatus(e.target.value)} className="lws-status">
+        <select value={taskStatus} onChange={(e) => handleChange(e.target.value)} className="lws-status">
           <option value="pending">Pending</option>
           <option value="inProgress">In Progress</option>
           <option value="completed">Completed</option>

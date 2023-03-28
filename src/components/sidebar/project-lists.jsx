@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useGetProjectsQuery } from "../../features/projects/projectsApi";
+import { addProjectItem } from "../../features/projects/projectsSlice";
 
 const ProjectLists = () => {
+  const dispatch = useDispatch();
   const { data: projects, isLoading, isError } = useGetProjectsQuery();
   //decide what to render
   let content = null;
@@ -19,7 +22,7 @@ const ProjectLists = () => {
       <div className="mt-3 space-y-4">
         {projects.map((project) => (
           <div key={project.id} className='checkbox-container'>
-            <input type="checkbox" className={`${project.colorClass}`} />
+            <input value={project.projectName} onChange={(e) => dispatch(addProjectItem(e.target.value))} type="checkbox" className={`${project.colorClass}`} />
             <p className="label">{project.projectName}</p>
           </div>
         ))}

@@ -1,6 +1,15 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { searchInputChange } from "../../features/search/searchSlice";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const [searchText, setSearchText] = useState('')
+  const handleChange = (e) => {
+    setSearchText(e.target.value)
+  }
+
   return (
     <nav style={{ marginBottom: "50px" }} className="container relative py-3">
       <div className="flex items-center justify-between">
@@ -20,6 +29,7 @@ const Navbar = () => {
             placeholder="Search Task"
             className="search-input"
             id="lws-searchTask"
+            onChange={(e) => dispatch(searchInputChange(e.target.value))}
           />
         </div>
       </div>
