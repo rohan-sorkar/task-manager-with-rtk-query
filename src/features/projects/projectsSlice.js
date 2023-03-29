@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    projectItems: []
+    projectItems: ['Scoreboard', 'Flight Booking', 'Product Cart', 'Book Store', 'Blog Application', 'Job Finder']
 };
 
 const projectsSlice = createSlice({

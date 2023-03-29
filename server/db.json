@@ -83,7 +83,7 @@
       },
       "deadline": "2023-03-15",
       "id": 1,
-      "status": "pending"
+      "status": "inProgress"
     },
     {
       "taskName": "Task Two",
@@ -99,7 +99,7 @@
       },
       "deadline": "2023-03-23",
       "id": 2,
-      "status": "inProgress"
+      "status": "completed"
     },
     {
       "taskName": "Task Three",
@@ -130,7 +130,7 @@
       },
       "deadline": "2023-03-11",
       "id": 4,
-      "status": "inProgress"
+      "status": "completed"
     },
     {
       "taskName": "Fix a bug",
@@ -147,6 +147,22 @@
       },
       "id": 5,
       "status": "completed"
+    },
+    {
+      "taskName": "dambing",
+      "deadline": "2023-03-01",
+      "status": "pending",
+      "project": {
+        "id": 2,
+        "projectName": "Flight Booking",
+        "colorClass": "color-flight"
+      },
+      "teamMember": {
+        "name": "Saad Hasan",
+        "avatar": "/images/avatars/sadh.png",
+        "id": 2
+      },
+      "id": 8
     }
   ]
 }

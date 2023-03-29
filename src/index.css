@@ -1000,11 +1000,15 @@ form .fieldContainer label {
   margin-left: auto;
   width: 8rem;
   cursor: pointer;
+  background-color: #152326;
+  padding: 5px 10px;
+  font-weight: 600;
+  color: white;
 }
 
 .lws-submit:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+  background-color: #243f47;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }

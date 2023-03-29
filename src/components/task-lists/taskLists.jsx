@@ -7,9 +7,6 @@ const TaskLists = () => {
   const { data: tasks, isLoading, isError } = useGetTasksQuery();
   const {projectItems} = useSelector((state) => state.projects)
   const {searchTerm} = useSelector((state) => state.search)
-
-
-  
   const performFilter = (tasks) => {
     if(tasks?.length > 0) {
       return tasks.filter((task) => projectItems.includes(task.project.projectName))
